@@ -1,0 +1,15 @@
+version: '3'
+services: 
+  mongo-server:
+    image: 'mongo'
+  node-server:
+    build: 
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - /app/node_modules
+      - .:/app
+    restart: on-failure
+    ports:
+      - "5000:5000"
+    

@@ -4,7 +4,7 @@ const process = require('process');
 const app = require('./app');
 const User = require('./models/user');
 const { use } = require('passport');
- 
+
 async function start() {
 
     if(process.env.NODE_ENV === 'production') {
