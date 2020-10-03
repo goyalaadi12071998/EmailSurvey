@@ -1,6 +1,7 @@
 const express = require('express');
 const authRoutes = require('./routes/auth-routes');
 const billingRoutes = require('./routes/billing-routes');
+const surveyRoutes = require('./routes/survey-routes');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -28,5 +29,6 @@ app.use(passport.session());
 
 app.use(authRoutes);
 app.use(billingRoutes);
+app.use(surveyRoutes);
 
 module.exports = app;

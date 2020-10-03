@@ -1,15 +1,13 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema(
+const recipientSchema = new mongoose.Schema(
     {
-        googleId: { 
-            type: String,
-            required: true,
-            unique: true
+        email: {
+            type: String
         },
-        credits: { 
-            type: Number,
-            default: 10
+        responded: {
+            type: Boolean,
+            default: false
         }
     },
     {
@@ -23,4 +21,5 @@ const userSchema = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model('User',userSchema);
+module.exports = recipientSchema;
+
