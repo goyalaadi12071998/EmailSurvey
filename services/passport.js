@@ -9,7 +9,7 @@ passport.serializeUser((user,done) => {
 });
 
 passport.deserializeUser((id,done) => {
-    User.findById({_id: id}).then((user) => {
+    User.findById(id).then(user => {
        done(null,user); 
     });
 });
@@ -19,17 +19,17 @@ passport.use(new GoogleStrategy({
     clientID: KEYS.googleClientID,
     clientSecret: KEYS.googleClientSecret,
     callbackURL: '/auth/google/callback',
-    proxy: false
+    proxy: true
 
     }, async (accessToken,refreshToken,profile,done) => {
         const existingUser = await User.findOne({googleId: profile.id});
         if(existingUser) {
-            console.log('User exist');
+            //console.log('User exist');
             done(null,existingUser);
         }else{
             var newUser = new User({googleId: profile.id});
             await newUser.save();
-            console.log('User saved');
+            //console.log('User saved');
             done(null,newUser);
         }
     }

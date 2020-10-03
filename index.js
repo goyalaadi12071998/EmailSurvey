@@ -42,6 +42,11 @@ async function start() {
             console.log('Please provide stripe secret key');
             process.exit(1);
         }
+
+        if(!process.env.SEND_GRID_API_KEY) {
+            console.log('Please provide sendgrid api key');
+            process.exit(1);
+        }
     }
 
     try {

@@ -6,4 +6,6 @@ module.exports = {
     googleCallBackUrl: process.env.GOOGLE_CALL_BACK_URL,
     stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
     stripeSecretKey: process.env.STRIPE_SECRET_KEY,
+    sendGridAPIKey: process.env.SEND_GRID_API_KEY,
+    redirectDomain: process.env.REDIRECT_DOMAIN
 }
