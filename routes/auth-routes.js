@@ -11,7 +11,7 @@ router.get('/auth/google/callback',passport.authenticate('google'),(req, res) =>
 });
 
 router.get('/api/current_user',async (req,res) => {
-    console.log(req.user);
+    console.log(req.session);
     res.send(req.user);
 });
 
