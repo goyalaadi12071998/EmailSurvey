@@ -6,6 +6,10 @@ COPY ./package.json ./
 
 RUN npm install
 
-COPY . .
+COPY ./ ./
 
-CMD ["npm","run","start"]
+EXPOSE 5000
+
+RUN npm install -g nodemon
+
+CMD ["npm","run","dev"]

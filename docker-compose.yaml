@@ -1,15 +1,20 @@
 version: '3'
-services: 
-  mongo-server:
-    image: 'mongo'
+services:
+  mongo: 
+    container_name: mongo
+    image: mongo 
+    ports: 
+      - "27017:27017"
   node-server:
+    container_name: backend
+    restart: always
     build: 
-      dockerfile: Dockerfile
       context: .
-    volumes:
-      - /app/node_modules
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: development
+    ports: 
+      - 5000:5000
+    volumes: 
       - .:/app
-    restart: on-failure
-    ports:
-      - "5000:5000"
-    
+      - /app/node_modules
