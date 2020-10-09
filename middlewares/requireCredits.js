@@ -1,6 +1,9 @@
-module.exports = (req,res,next) => {
-    if(req.currentUser.credits < 1){
-        return res.status(403).send('You do not have enough credits');
+const User = require('../models/user');
+
+module.exports = async (req,res,next) => {
+    const user = await User.findById(req.currentUser.id);
+    if(user.credits < 1){
+        res.send('Require enough credits');
     }
     next();
 }

@@ -11,7 +11,6 @@ module.exports = async (req, res, next) => {
         const payload = jwt.verify(req.session.jwt,'asdf');
         console.log(payload);
         req.currentUser = payload;
-        console.log(req.currentUser);
     }catch(err){
         return res.send(err);
     }

@@ -8,16 +8,6 @@ const { use } = require('passport');
 async function start() {
 
     if(process.env.NODE_ENV === 'production') {
-        if(!process.env.GOOGLE_CLIENT_ID) {
-            console.log('Please provide google client id');
-            process.exit(1);
-        }
-
-        if(!process.env.GOOGLE_CLIENT_SECRET) {
-            console.log('Please provide google secret key');
-            process.exit(1);
-        }
-
         if(!process.env.DATABASE_URL_STRING) {
             console.log('Please provide database url string');
             process.exit(1);
@@ -25,11 +15,6 @@ async function start() {
 
         if(!process.env.COOKIE_KEY) {
             console.log('Please provide cookie secret');
-            process.exit(1);
-        }
-
-        if(!process.env.GOOGLE_CALL_BACK_URL) {
-            console.log('Please provide google callback url');
             process.exit(1);
         }
 
@@ -45,6 +30,11 @@ async function start() {
 
         if(!process.env.SEND_GRID_API_KEY) {
             console.log('Please provide sendgrid api key');
+            process.exit(1);
+        }
+
+        if(!process.env.JWT_SECRET) {
+            console.log('Please provide jwt secret');
             process.exit(1);
         }
     }

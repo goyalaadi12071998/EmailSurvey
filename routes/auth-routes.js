@@ -1,5 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const KEYS = require('../config/keys');
 const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
@@ -16,7 +17,7 @@ router.post('/api/users/signup', async (req,res) => {
     const hash = await bcrypt.hash(password,10);
     const user = new User({email: email, password: hash});
     await user.save();
-    const userJwt = await jwt.sign({id : user.id},'asdf');
+    const userJwt = await jwt.sign({id : user.id}, KEYS.jwtSecret );
 
     req.session = {
         jwt: userJwt
@@ -28,14 +29,13 @@ router.post('/api/users/signin', async (req, res) => {
     const {email , password} = req.body;
     const existingUser = await User.findOne({email : email});
     if(!existingUser) {
-        //throw new Error('User with this email does not exist');
         res.send('User with this email does not exist');
     }
     const passwordMatch = await bcrypt.compare(password,existingUser.password);
     if(!passwordMatch){
         res.send('Credentials does not match');
     }
-    const userJwt = await jwt.sign({id : existingUser.id},'asdf');
+    const userJwt = await jwt.sign({id : existingUser.id}, KEYS.jwtSecret );
     req.session = {
         jwt: userJwt
     };
